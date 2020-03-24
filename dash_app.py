@@ -83,17 +83,17 @@ app.layout = html.Div([
     html.Div(
         dcc.Graph(id="Gender Graph",
                     figure={'data':[
-                        #{"x":["Gender"],"y":["mobile_money_classification"],"type":"bar", "name":"None"},
-                        {"x":[chart1[chart1["index"] == "None"]["mobile_money_classification"].values[0]],"y":[chart1[chart1["index"] == "None"]["index"].values[0]],"type":"bar", "name":"None"},
+                        {"x":[mob_money["Gender"]],"y":[chart1[chart1["index"] == "None"]["index"].values[0]],"type":"bar", "name":"None"},
+                        # {"x":[chart1[chart1["index"] == "None"]["mobile_money_classification"].values[0]],"y":[chart1[chart1["index"] == "None"]["index"].values[0]],"type":"bar", "name":"None"},
                         
-                       # {"x":["Gender"],"y":["mobile_money_classification"],"type":"bar", "name":"MM_Plus"},
-                        {"x":[chart1[chart1["index"] == "MM_Plus"]["mobile_money_classification"].values[0]],"y":[chart1[chart1["index"] == "MM_Plus"]["index"].values[0]],"type":"bar", "name":"MM_Plus"},
+                        {"x":[mob_money["Gender"]],"y":[chart1[chart1["index"] == "MM_Plus"]["index"].values[0]],"type":"bar", "name":"MM_Plus"},
+                        # {"x":[chart1[chart1["index"] == "MM_Plus"]["mobile_money_classification"].values[0]],"y":[chart1[chart1["index"] == "MM_Plus"]["index"].values[0]],"type":"bar", "name":"MM_Plus"},
                         
-                       # {"x":["Gender"],"y":["mobile_money_classification"],"type":"bar", "name":"MM_Only"},
-                       {"x":[chart1[chart1["index"] == "MM_Only"]["mobile_money_classification"].values[0]],"y":[chart1[chart1["index"] == "MM_Only"]["index"].values[0]],"type":"bar", "name":"MM_Only"},
+                        {"x":[mob_money["Gender"]],"y":[chart1[chart1["index"] == "MM_Only"]["index"].values[0]],"type":"bar", "name":"MM_Only"},
+                        # {"x":[chart1[chart1["index"] == "MM_Only"]["mobile_money_classification"].values[0]],"y":[chart1[chart1["index"] == "MM_Only"]["index"].values[0]],"type":"bar", "name":"MM_Only"},
                         
-                       # {"x":["Gender"],"y":["mobile_money_classification"],"type":"bar", "name":"Other_Only"},
-                       {"x":[chart1[chart1["index"] == "Other_Only"]["mobile_money_classification"].values[0]],"y":[chart1[chart1["index"] == "Other_Only"]["index"].values[0]],"type":"bar", "name":"Other_Only"}
+                        {"x":[mob_money["Gender"]],"y":[chart1[chart1["index"] == "Other_Only"]["index"].values[0]],"type":"bar", "name":"Other_Only"},
+                        # {"x":[chart1[chart1["index"] == "Other_Only"]["mobile_money_classification"].values[0]],"y":[chart1[chart1["index"] == "Other_Only"]["index"].values[0]],"type":"bar", "name":"Other_Only"}
     
                     ],
                     "layout":{
