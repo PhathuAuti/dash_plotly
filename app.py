@@ -75,17 +75,7 @@ incomes.Income_Type.value_counts()
 
 chart1 = pd.DataFrame(mob_money["mobile_money_classification"].value_counts()).reset_index()
 chart2 = pd.DataFrame(mob_money['Mobile Money for GnS (12months)'].value_counts()).reset_index()
-
-
-
-# x=['b', 'a', 'c', 'd']
-# fig = go.Figure(go.Bar(x=x, y=[2,5,1,9], name='Montreal'))
-# fig.add_trace(go.Bar(x=x, y=[1, 4, 9, 16], name='Ottawa'))
-# fig.add_trace(go.Bar(x=x, y=[6, 8, 4.5, 8], name='Toronto'))
-
-# fig.update_layout(barmode='stack', xaxis={'categoryorder':'total descending'})
-# fig.show()
-
+chart3 = pd.DataFrame(incomes['Income_Type'].value_counts()).reset_index()
 app = dash.Dash()
 
 app.layout = html.Div([
@@ -118,6 +108,26 @@ app.layout = html.Div([
                         }}
                     )
         ]),
+    html.Div([
+        dcc.Graph(id="Types of Income",
+                        figure={'data':[
+                            {"x":[chart3[chart3["index"] == "Trading"]["index"].values[0]], "y":[chart3[chart3["index"] == "Trading"]['Income_Type'].values[0]],"type":"bar", "name":"Trading"},
+                            {"x":[chart3[chart3["index"] == "Piece Jobs"]["index"].values[0]], "y":[chart3[chart3["index"] == "Piece Jobs"]['Income_Type'].values[0]],"type":"bar", "name":"Piece Jobs"},
+                            {"x":[chart3[chart3["index"] == "Rely on Someone Else"]["index"].values[0]], "y":[chart3[chart3["index"] == "Rely on Someone Else"]['Income_Type'].values[0]],"type":"bar", "name":"Rely on Someone Else"},
+                            {"x":[chart3[chart3["index"] == "Salaries/Wages"]["index"].values[0]], "y":[chart3[chart3["index"] == "Salaries/Wages"]['Income_Type'].values[0]],"type":"bar", "name":"Salaries/Wages"},
+                            {"x":[chart3[chart3["index"] == "Service Provider"]["index"].values[0]], "y":[chart3[chart3["index"] == "Service Provider"]['Income_Type'].values[0]],"type":"bar", "name":"Service Provider"},
+                            {"x":[chart3[chart3["index"] == "No Money"]["index"].values[0]], "y":[chart3[chart3["index"] == "No Money"]['Income_Type'].values[0]],"type":"bar", "name":"No Money"},
+                            {"x":[chart3[chart3["index"] == "Social Welfare"]["index"].values[0]], "y":[chart3[chart3["index"] == "Social Welfare"]['Income_Type'].values[0]],"type":"bar", "name":"Social Welfare"},
+                            {"x":[chart3[chart3["index"] == "Rental Income"]["index"].values[0]], "y":[chart3[chart3["index"] == "Rental Income"]['Income_Type'].values[0]],"type":"bar", "name":"Rental Income"},
+                            {"x":[chart3[chart3["index"] == "Investments"]["index"].values[0]], "y":[chart3[chart3["index"] == "Investments"]['Income_Type'].values[0]],"type":"bar", "name":"Investments"},
+                            {"x":[chart3[chart3["index"] == "Pension"]["index"].values[0]], "y":[chart3[chart3["index"] == "Pension"]['Income_Type'].values[0]],"type":"bar", "name":"Pension"},
+                            {"x":[chart3[chart3["index"] == "Other"]["index"].values[0]], "y":[chart3[chart3["index"] == "Other"]['Income_Type'].values[0]],"type":"bar", "name":"Other"}
+                        ],
+                        "layout":{
+                            "title":"Bar Plot3"
+                        }}
+                    )
+        ])
     ])
 
 # running the server
