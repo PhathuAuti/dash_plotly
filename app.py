@@ -10,9 +10,9 @@ import numpy as np
 
 mob_money = pd.read_csv('training.csv')
 
-# changing index cols with rename() 
-mob_money = mob_money.rename(columns = {"Q1": "Age", 
-                                  "Q2": "Gender", 
+# changing index cols with rename()
+mob_money = mob_money.rename(columns = {"Q1": "Age",
+                                  "Q2": "Gender",
                                   "Q3": "Marital Status",
                                   "Q4": "Highest Qualification",
                                   "Q5": "Living Conditions",
@@ -39,9 +39,9 @@ mob_money = mob_money.rename(columns = {"Q1": "Age",
                                   "Q16": "Mobile Money for GnS (12months)",
                                   "Q17": "Mobile Money for Bills (12months)",
                                   "Q18": "Literacy in Kiswhahili",
-                                  "Q19": "Literacy in English"}) 
-  
-# changing columns using .columns() 
+                                  "Q19": "Literacy in English"})
+
+# changing columns using .columns()
 mob_money.columns = ["ID","Age", "Gender","Marital Status","Highest Qualification","Living Conditions",
                     "Land Ownership", "Cellphone Ownership", "Salaries/Wages","Trading", "Service Provider",
                     "Piece Jobs", "Rental Income","Investments", "Pension","Social Welfare",
@@ -74,35 +74,39 @@ incomes = incomes[incomes['value'] == 1]
 incomes.Income_Type.value_counts()
 
 chart1 = pd.DataFrame(mob_money["mobile_money_classification"].value_counts()).reset_index()
+chart2 = pd.DataFrame(mob_money["Gender"].value_counts()).reset_index()
+
+
+
+# x=['b', 'a', 'c', 'd']
+# fig = go.Figure(go.Bar(x=x, y=[2,5,1,9], name='Montreal'))
+# fig.add_trace(go.Bar(x=x, y=[1, 4, 9, 16], name='Ottawa'))
+# fig.add_trace(go.Bar(x=x, y=[6, 8, 4.5, 8], name='Toronto'))
+
+# fig.update_layout(barmode='stack', xaxis={'categoryorder':'total descending'})
+# fig.show()
 
 app = dash.Dash()
 
 app.layout = html.Div([
     html.Div(html.H1(children="Hello World")),
     html.Label("Dash Graph1"),
-    html.Div(
+    html.Div([
         dcc.Graph(id="Gender Graph",
-                    figure={'data':[
-                        {"x":[mob_money["Gender"]],"y":[chart1[chart1["index"] == "None"]["index"].values[0]],"type":"bar", "name":"None"},
-                        # {"x":[chart1[chart1["index"] == "None"]["mobile_money_classification"].values[0]],"y":[chart1[chart1["index"] == "None"]["index"].values[0]],"type":"bar", "name":"None"},
-                        
-                        {"x":[mob_money["Gender"]],"y":[chart1[chart1["index"] == "MM_Plus"]["index"].values[0]],"type":"bar", "name":"MM_Plus"},
-                        # {"x":[chart1[chart1["index"] == "MM_Plus"]["mobile_money_classification"].values[0]],"y":[chart1[chart1["index"] == "MM_Plus"]["index"].values[0]],"type":"bar", "name":"MM_Plus"},
-                        
-                        {"x":[mob_money["Gender"]],"y":[chart1[chart1["index"] == "MM_Only"]["index"].values[0]],"type":"bar", "name":"MM_Only"},
-                        # {"x":[chart1[chart1["index"] == "MM_Only"]["mobile_money_classification"].values[0]],"y":[chart1[chart1["index"] == "MM_Only"]["index"].values[0]],"type":"bar", "name":"MM_Only"},
-                        
-                        {"x":[mob_money["Gender"]],"y":[chart1[chart1["index"] == "Other_Only"]["index"].values[0]],"type":"bar", "name":"Other_Only"},
-                        # {"x":[chart1[chart1["index"] == "Other_Only"]["mobile_money_classification"].values[0]],"y":[chart1[chart1["index"] == "Other_Only"]["index"].values[0]],"type":"bar", "name":"Other_Only"}
-    
-                    ],
-                    "layout":{
-                        "title":"Bar Plot"
-                    }}
-                )
-    )
-])
+                        figure={'data':[
+                            {"x":[chart1[chart1["index"] == "None"]["index"].values[0]], "y":[chart1[chart1["index"] == "None"]["mobile_money_classification"].values[0]],"type":"bar", "name":"None"},
+                            {"x":[chart1[chart1["index"] == "MM_Plus"]["index"].values[0]], "y":[chart1[chart1["index"] == "MM_Plus"]["mobile_money_classification"].values[0]],"type":"bar", "name":"MM_Plus"},
+                            {"x":[chart1[chart1["index"] == "MM_Only"]["index"].values[0]], "y":[chart1[chart1["index"] == "MM_Only"]["mobile_money_classification"].values[0]],"type":"bar", "name":"MM_Only"},
+                            {"x":[chart1[chart1["index"] == "Other_Only"]["index"].values[0]], "y":[chart1[chart1["index"] == "Other_Only"]["mobile_money_classification"].values[0]],"type":"bar", "name":"Other_Only"}
+                        ],
+                        "layout":{
+                            "title":"Bar Plot"
+                        }}
+                    )
+        ]),
+    ])
 
+# running the server
 if __name__ == '__main__':
     app.run_server(debug=True)
 
