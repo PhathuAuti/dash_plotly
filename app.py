@@ -73,16 +73,23 @@ incomes = pd.melt(incomes, id_vars = ['mobile_money', 'Sent Money(12months)', 'R
 incomes = incomes[incomes['value'] == 1]
 incomes.Income_Type.value_counts()
 
+# creating necessary dataframes to help build the graphs
 chart1 = pd.DataFrame(mob_money["mobile_money_classification"].value_counts()).reset_index()
 chart2 = pd.DataFrame(mob_money['Mobile Money for GnS (12months)'].value_counts()).reset_index()
 chart3 = pd.DataFrame(incomes['Income_Type'].value_counts()).reset_index()
+
 app = dash.Dash()
 
+colors = {
+    'background': '#1f1f1f',
+    'text': '#ff7f50'
+}
+
 app.layout = html.Div([
-    html.Div(html.H1(children="Hello World")),
-    html.Label("Dash Graph1"),
+    html.Div(html.H1(children="Tanzania Mobile Money")),
+    html.Label("Dashboard Indicating Mobile Money Usage in Tanzania"),
     html.Div([
-        dcc.Graph(id="Classification",
+        dcc.Graph(id="Bar Plot1",
                         figure={'data':[
                             {"x":[chart1[chart1["index"] == "None"]["index"].values[0]], "y":[chart1[chart1["index"] == "None"]["mobile_money_classification"].values[0]],"type":"bar", "name":"None"},
                             {"x":[chart1[chart1["index"] == "MM_Plus"]["index"].values[0]], "y":[chart1[chart1["index"] == "MM_Plus"]["mobile_money_classification"].values[0]],"type":"bar", "name":"MM_Plus"},
@@ -90,12 +97,12 @@ app.layout = html.Div([
                             {"x":[chart1[chart1["index"] == "Other_Only"]["index"].values[0]], "y":[chart1[chart1["index"] == "Other_Only"]["mobile_money_classification"].values[0]],"type":"bar", "name":"Other_Only"}
                         ],
                         "layout":{
-                            "title":"Bar Plot"
+                            "title":"Mobile Money Classification"
                         }}
                     )
         ]),
     html.Div([
-        dcc.Graph(id="Goods and Services",
+        dcc.Graph(id="Bar Plot2",
                         figure={'data':[
                             {"x":[chart2[chart2["index"] == "Never"]["index"].values[0]], "y":[chart2[chart2["index"] == "Never"]['Mobile Money for GnS (12months)'].values[0]],"type":"bar", "name":"Never"},
                             {"x":[chart2[chart2["index"] == "LessMnthly"]["index"].values[0]], "y":[chart2[chart2["index"] == "LessMnthly"]['Mobile Money for GnS (12months)'].values[0]],"type":"bar", "name":"LessMnthly"},
@@ -104,12 +111,12 @@ app.layout = html.Div([
                             {"x":[chart2[chart2["index"] == "Daily"]["index"].values[0]], "y":[chart2[chart2["index"] == "Daily"]['Mobile Money for GnS (12months)'].values[0]],"type":"bar", "name":"Daily"}
                         ],
                         "layout":{
-                            "title":"Bar Plot2"
+                            "title":"Mobile Money Used For Goods and Services In Past Year"
                         }}
                     )
         ]),
     html.Div([
-        dcc.Graph(id="Types of Income",
+        dcc.Graph(id="Bar Plot3",
                         figure={'data':[
                             {"x":[chart3[chart3["index"] == "Salaries/Wages"]["index"].values[0]], "y":[chart3[chart3["index"] == "Salaries/Wages"]['Income_Type'].values[0]],"type":"bar", "name":"Salaries/Wages"},
                             {"x":[chart3[chart3["index"] == "Trading"]["index"].values[0]], "y":[chart3[chart3["index"] == "Trading"]['Income_Type'].values[0]],"type":"bar", "name":"Trading"},
@@ -124,7 +131,7 @@ app.layout = html.Div([
                             {"x":[chart3[chart3["index"] == "Other"]["index"].values[0]], "y":[chart3[chart3["index"] == "Other"]['Income_Type'].values[0]],"type":"bar", "name":"Other"}
                         ],
                         "layout":{
-                            "title":"Bar Plot3"
+                            "title":"Types of Income"
                         }}
                     )
         ])
