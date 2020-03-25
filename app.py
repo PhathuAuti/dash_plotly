@@ -111,16 +111,16 @@ app.layout = html.Div([
     html.Div([
         dcc.Graph(id="Types of Income",
                         figure={'data':[
-                            {"x":[chart3[chart3["index"] == "Trading"]["index"].values[0]], "y":[chart3[chart3["index"] == "Trading"]['Income_Type'].values[0]],"type":"bar", "name":"Trading"},
-                            {"x":[chart3[chart3["index"] == "Piece Jobs"]["index"].values[0]], "y":[chart3[chart3["index"] == "Piece Jobs"]['Income_Type'].values[0]],"type":"bar", "name":"Piece Jobs"},
-                            {"x":[chart3[chart3["index"] == "Rely on Someone Else"]["index"].values[0]], "y":[chart3[chart3["index"] == "Rely on Someone Else"]['Income_Type'].values[0]],"type":"bar", "name":"Rely on Someone Else"},
                             {"x":[chart3[chart3["index"] == "Salaries/Wages"]["index"].values[0]], "y":[chart3[chart3["index"] == "Salaries/Wages"]['Income_Type'].values[0]],"type":"bar", "name":"Salaries/Wages"},
-                            {"x":[chart3[chart3["index"] == "Service Provider"]["index"].values[0]], "y":[chart3[chart3["index"] == "Service Provider"]['Income_Type'].values[0]],"type":"bar", "name":"Service Provider"},
-                            {"x":[chart3[chart3["index"] == "No Money"]["index"].values[0]], "y":[chart3[chart3["index"] == "No Money"]['Income_Type'].values[0]],"type":"bar", "name":"No Money"},
-                            {"x":[chart3[chart3["index"] == "Social Welfare"]["index"].values[0]], "y":[chart3[chart3["index"] == "Social Welfare"]['Income_Type'].values[0]],"type":"bar", "name":"Social Welfare"},
+                            {"x":[chart3[chart3["index"] == "Trading"]["index"].values[0]], "y":[chart3[chart3["index"] == "Trading"]['Income_Type'].values[0]],"type":"bar", "name":"Trading"},
                             {"x":[chart3[chart3["index"] == "Rental Income"]["index"].values[0]], "y":[chart3[chart3["index"] == "Rental Income"]['Income_Type'].values[0]],"type":"bar", "name":"Rental Income"},
+                            {"x":[chart3[chart3["index"] == "Service Provider"]["index"].values[0]], "y":[chart3[chart3["index"] == "Service Provider"]['Income_Type'].values[0]],"type":"bar", "name":"Service Provider"},
                             {"x":[chart3[chart3["index"] == "Investments"]["index"].values[0]], "y":[chart3[chart3["index"] == "Investments"]['Income_Type'].values[0]],"type":"bar", "name":"Investments"},
+                            {"x":[chart3[chart3["index"] == "Piece Jobs"]["index"].values[0]], "y":[chart3[chart3["index"] == "Piece Jobs"]['Income_Type'].values[0]],"type":"bar", "name":"Piece Jobs"},
+                            {"x":[chart3[chart3["index"] == "Social Welfare"]["index"].values[0]], "y":[chart3[chart3["index"] == "Social Welfare"]['Income_Type'].values[0]],"type":"bar", "name":"Social Welfare"},
                             {"x":[chart3[chart3["index"] == "Pension"]["index"].values[0]], "y":[chart3[chart3["index"] == "Pension"]['Income_Type'].values[0]],"type":"bar", "name":"Pension"},
+                            {"x":[chart3[chart3["index"] == "Rely on Someone Else"]["index"].values[0]], "y":[chart3[chart3["index"] == "Rely on Someone Else"]['Income_Type'].values[0]],"type":"bar", "name":"Rely on Someone Else"},
+                            {"x":[chart3[chart3["index"] == "No Money"]["index"].values[0]], "y":[chart3[chart3["index"] == "No Money"]['Income_Type'].values[0]],"type":"bar", "name":"No Money"},
                             {"x":[chart3[chart3["index"] == "Other"]["index"].values[0]], "y":[chart3[chart3["index"] == "Other"]['Income_Type'].values[0]],"type":"bar", "name":"Other"}
                         ],
                         "layout":{
