@@ -74,7 +74,7 @@ incomes = incomes[incomes['value'] == 1]
 incomes.Income_Type.value_counts()
 
 chart1 = pd.DataFrame(mob_money["mobile_money_classification"].value_counts()).reset_index()
-chart2 = pd.DataFrame(mob_money["Gender"].value_counts()).reset_index()
+chart2 = pd.DataFrame(mob_money['Mobile Money for GnS (12months)'].value_counts()).reset_index()
 
 
 
@@ -92,7 +92,7 @@ app.layout = html.Div([
     html.Div(html.H1(children="Hello World")),
     html.Label("Dash Graph1"),
     html.Div([
-        dcc.Graph(id="Gender Graph",
+        dcc.Graph(id="Classification",
                         figure={'data':[
                             {"x":[chart1[chart1["index"] == "None"]["index"].values[0]], "y":[chart1[chart1["index"] == "None"]["mobile_money_classification"].values[0]],"type":"bar", "name":"None"},
                             {"x":[chart1[chart1["index"] == "MM_Plus"]["index"].values[0]], "y":[chart1[chart1["index"] == "MM_Plus"]["mobile_money_classification"].values[0]],"type":"bar", "name":"MM_Plus"},
@@ -101,6 +101,20 @@ app.layout = html.Div([
                         ],
                         "layout":{
                             "title":"Bar Plot"
+                        }}
+                    )
+        ]),
+    html.Div([
+        dcc.Graph(id="Goods and Services",
+                        figure={'data':[
+                            {"x":[chart2[chart2["index"] == "Never"]["index"].values[0]], "y":[chart2[chart2["index"] == "Never"]['Mobile Money for GnS (12months)'].values[0]],"type":"bar", "name":"Never"},
+                            {"x":[chart2[chart2["index"] == "LessMnthly"]["index"].values[0]], "y":[chart2[chart2["index"] == "LessMnthly"]['Mobile Money for GnS (12months)'].values[0]],"type":"bar", "name":"LessMnthly"},
+                            {"x":[chart2[chart2["index"] == "Monthly"]["index"].values[0]], "y":[chart2[chart2["index"] == "Monthly"]['Mobile Money for GnS (12months)'].values[0]],"type":"bar", "name":"Monthly"},
+                            {"x":[chart2[chart2["index"] == "Weekly"]["index"].values[0]], "y":[chart2[chart2["index"] == "Weekly"]['Mobile Money for GnS (12months)'].values[0]],"type":"bar", "name":"Weekly"},
+                            {"x":[chart2[chart2["index"] == "Daily"]["index"].values[0]], "y":[chart2[chart2["index"] == "Daily"]['Mobile Money for GnS (12months)'].values[0]],"type":"bar", "name":"Daily"}
+                        ],
+                        "layout":{
+                            "title":"Bar Plot2"
                         }}
                     )
         ]),
